@@ -1,66 +1,103 @@
 #include <stdio.h>
 
-int main(){
+void movimentoTorre(int torre){
 
-    int option; // Variavel usada para o menu interativo;
+    if (torre > 0)
+    {
+        movimentoTorre(torre - 1);
+        printf("Torre movendo para a posição %d, direita\n", torre);   
+    }
+}
 
 
-    // Inicializando com um menu;
+void movimentoBispo(int bispo){
 
-    printf("** Escolha uma peça do xadrez para mover ** \n\n");
+    if (bispo > 0)
+    {
+        movimentoBispo(bispo - 1);
+        printf("Bispo movendo para a posição %d, diagonal (cima, direita)\n", bispo);
+    }
+}
 
+
+void movimentoRainha(int rainha){
+
+    if (rainha > 0)
+    {
+        movimentoRainha(rainha - 1);
+        printf("Rainha movendo para a posição %d, esquerda\n", rainha);
+    }
+}
+
+
+int main() {
+
+    int option;
+
+    // Exibindo o menu interativo;
+
+    printf("** Escolha uma peça para mover **\n\n");
     printf("1. Torre\n");
     printf("2. Bispo\n");
     printf("3. Rainha\n");
+    printf("4. Cavalo\n");
 
     printf("\nEscolha: ");
     scanf("%d", &option);
 
 
-    switch (option)
-    {
-        case 1: //Torre;
-        
-    printf("\nMovimento da Torre:\n");
+    switch (option) {
 
-    int torre = 1;
-    while (torre <= 5)
-    {
-        printf("Torre movendo para a posição %d, direita\n", torre);
-        torre++;
-    }
+        case 1: // Torre
+
+            printf("\nMovimento da Torre:\n");
+            movimentoTorre(5);
+            
         break;
-        case 2: //Bispo;
 
-    printf("\nMovimento do Bispo:\n");
+        case 2: // Bispo
 
-    int bispo = 1;
-    do
-    {
-        
-        printf("Bispo movendo para a posição %d, diagonal (cima, direita)\n", bispo);
-        bispo++;
+            printf("\nMovimento do Bispo:\n");
+            movimentoBispo(5);
+            
+        break;
 
-    }while (bispo <= 5);
+        case 3: // Rainha
+
+            printf("\nMovimento da Rainha:\n");
+            movimentoRainha(8);
     
         break;
-        case 3: //Rainha;
 
-    printf("\nMovimento da Rainha: \n");
+        case 4: // Cavalo
 
-    for (int rainha = 1; rainha <= 8; rainha++)
-    {
-        printf("Rainha movendo para a posição %d, esquerda\n", rainha);
-    }
+            printf("\nMovimento do Cavalo:\n");
+
+        // Loop for para o movimento do cavalo para cima;
+
+            for (int cavaloCima = 1; cavaloCima <= 2; cavaloCima++)
+            {
+                printf("Cavalo movendo para a posição %d, cima\n", cavaloCima);
+            }
+    
+        // Loop while para o movimento do cavalo para a esquerda;
+            
+            int cavaloDireita = 1;
+            while (cavaloDireita <= 1){
+                printf("Cavalo movendo para a posição %d, direita\n", cavaloDireita + 2); // + 2 para ajustar a contagem;
+                cavaloDireita++;
+            }
+
         break;
+
         default:
 
-        printf("Opcão inválida. Tente novamente.\n");
-
-        break;
-    }
-
+            printf("Opção inválida!\n");
     
-    //Fim do programa;
+        break;
+        }
+
+        
+    // Fim do programa;
     return 0;
 }
